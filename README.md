@@ -1,6 +1,6 @@
 # Módulo 5 - Técnicas de Programação I - C# - Tarefas
 
-## Exercício com Filas (08/08/2022)
+## Exercício com Filas (Queue Exercise - 08/08/2022)
 
 Em um console app, crie um "sistema de gerenciamento de filas". Seu programa deve conter duas filas, uma prioritária e uma regular. Seu menu deve conter as seguintes opções:
 - adicionar pessoa na fila regular;
