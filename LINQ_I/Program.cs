@@ -17,21 +17,34 @@ namespace LINQ_I
 
             var selicMin = data.OrderBy(x => x.SelicValue).First();
 
-            var selicMostFrequentValue = data.GroupBy(x => x.SelicValue)
-                .OrderByDescending(x => x.Count())
-                .Select(x => new { Dado = $"{x.Key.ToString("F2")}% ({x.Count()} dias)" })
-                .First();
+            var selicCountMostFrequentValues = data
+                    .GroupBy(x => x.SelicValue)
+                    .OrderByDescending(x => x.Count())
+                    .Select(x => new { Days = x.Count() })
+                    .First();
+
+            var selicMostFrequentValues = data
+                    .GroupBy(x => x.SelicValue)
+                    .OrderByDescending(x => x.Count())
+                    .Where(x => x.Count() == selicCountMostFrequentValues.Days)
+                    .Select(x => new { Selic = x.Key })
+                    .ToArray();
 
             var selicAverage = data.Average(x => x.SelicValue);
 
             // Dados de todo o histórico
-            Console.WriteLine($"\nDADOS DA SÉRIE HISTÓRICA DA SELIC DE" +
+            Console.WriteLine($"\nDADOS DA SÉRIE HISTÓRICA DA SELIC DE " +
                               $"{firstDateAvailable.ToString("dd/MM/yyyy")} " +
                               $"A {lastDateAvailable.ToString("dd/MM/yyyy")}");
-            Console.WriteLine("\n##### Panorama Geral #####");
+            Console.WriteLine("\n##### Panorama Geral #####\n");
             Console.WriteLine($"Menor valor histórico: {selicMin.SelicValue.ToString("F2")}%");
             Console.WriteLine($"Maior valor histórico: {selicMax.SelicValue.ToString("F2")}%");
-            Console.WriteLine($"Valor mais comum: {selicMostFrequentValue.Dado} ");
+            Console.Write($"Valor mais comum: ");
+            foreach (var item in selicMostFrequentValues)
+            {
+                Console.Write($"{item.Selic.ToString("F2")}% - ");
+            }
+            Console.WriteLine($"{selicCountMostFrequentValues.Days} dias");
             Console.WriteLine($"Valor médio: {selicAverage.ToString("F2")}%");
 
             // Dados por trimestre
@@ -61,12 +74,20 @@ namespace LINQ_I
                         .OrderByDescending(x => x.SelicValue)
                         .First();
 
-                var selicMostFrequentValueQuarter = data
+                var selicCountMostFrequentValuesQuarter = data
                         .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
                         .GroupBy(x => x.SelicValue)
                         .OrderByDescending(x => x.Count())
-                        .Select(x => new { DadoQuarter = $"{x.Key.ToString("F2")}% ({x.Count()} dias)" })
+                        .Select(x => new { Days = x.Count() })
                         .First();
+
+                var selicMostFrequentValuesQuarter = data
+                        .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
+                        .GroupBy(x => x.SelicValue)
+                        .OrderByDescending(x => x.Count())
+                        .Where(x => x.Count() == selicCountMostFrequentValuesQuarter.Days)
+                        .Select(x => new { DadoQuarter = x.Key })
+                        .ToArray();
 
                 var selicAverageQuarter = data
                         .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
@@ -74,7 +95,12 @@ namespace LINQ_I
 
                 Console.WriteLine($"Menor valor: {selicMinQuarter.SelicValue.ToString("F2")}%");
                 Console.WriteLine($"Maior valor: {selicMaxQuarter.SelicValue.ToString("F2")}%");
-                Console.WriteLine($"Valor mais comum: {selicMostFrequentValueQuarter.DadoQuarter} ");
+                Console.Write ($"Valor mais comum: ");
+                foreach (var item in selicMostFrequentValuesQuarter)
+                {
+                    Console.Write($"{item.DadoQuarter.ToString("F2")}% - ");
+                }
+                Console.WriteLine($"{selicCountMostFrequentValuesQuarter.Days} dias");
                 Console.WriteLine($"Valor médio: {selicAverageQuarter.ToString("F2")}%");
             }
         }
