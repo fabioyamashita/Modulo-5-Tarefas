@@ -23,6 +23,7 @@ namespace LINQ_I
                     .Select(x => new { Days = x.Count() })
                     .First();
 
+            // Array porque 2 taxas diferentes podem ter existido o mesmo número de dias
             var selicMostFrequentValues = data
                     .GroupBy(x => x.SelicValue)
                     .OrderByDescending(x => x.Count())
