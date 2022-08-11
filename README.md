@@ -23,7 +23,7 @@ O arquivo `selic.json` contém os dados históricos da taxa selic. Sendo um trim
 - Qual o valor mais comum da selic?
 - Qual valor médio?
 
-## Exercício com LINQ II (LINQ_I - 10/08/2022)
+## Exercício com LINQ II (LINQ_II - 10/08/2022)
 
 Aqui você ira fazer vários "pequenos exercícios". Por favor, resolva todos no mesmo programa.
 
