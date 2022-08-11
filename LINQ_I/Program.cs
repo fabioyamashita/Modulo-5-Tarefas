@@ -19,15 +19,14 @@ namespace LINQ_I
 
             var selicCountMostFrequentValues = data
                     .GroupBy(x => x.SelicValue)
-                    .OrderByDescending(x => x.Count())
-                    .Select(x => new { Days = x.Count() })
-                    .First();
+                    .Select(x => x.Count())
+                    .Max(x => x);
 
             // Array porque 2 taxas diferentes podem ter existido o mesmo número de dias
             var selicMostFrequentValues = data
                     .GroupBy(x => x.SelicValue)
                     .OrderByDescending(x => x.Count())
-                    .Where(x => x.Count() == selicCountMostFrequentValues.Days)
+                    .Where(x => x.Count() == selicCountMostFrequentValues)
                     .Select(x => new { Selic = x.Key })
                     .ToArray();
 
@@ -45,7 +44,7 @@ namespace LINQ_I
             {
                 Console.Write($"{item.Selic.ToString("F2")}% - ");
             }
-            Console.WriteLine($"{selicCountMostFrequentValues.Days} dias");
+            Console.WriteLine($"{selicCountMostFrequentValues} dias");
             Console.WriteLine($"Valor médio: {selicAverage.ToString("F2")}%");
 
             // Dados por trimestre
@@ -78,15 +77,14 @@ namespace LINQ_I
                 var selicCountMostFrequentValuesQuarter = data
                         .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
                         .GroupBy(x => x.SelicValue)
-                        .OrderByDescending(x => x.Count())
-                        .Select(x => new { Days = x.Count() })
-                        .First();
+                        .Select(x => x.Count())
+                        .Max(x => x);
 
                 var selicMostFrequentValuesQuarter = data
                         .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
                         .GroupBy(x => x.SelicValue)
                         .OrderByDescending(x => x.Count())
-                        .Where(x => x.Count() == selicCountMostFrequentValuesQuarter.Days)
+                        .Where(x => x.Count() == selicCountMostFrequentValuesQuarter)
                         .Select(x => new { DadoQuarter = x.Key })
                         .ToArray();
 
@@ -101,7 +99,7 @@ namespace LINQ_I
                 {
                     Console.Write($"{item.DadoQuarter.ToString("F2")}% - ");
                 }
-                Console.WriteLine($"{selicCountMostFrequentValuesQuarter.Days} dias");
+                Console.WriteLine($"{selicCountMostFrequentValuesQuarter} dias");
                 Console.WriteLine($"Valor médio: {selicAverageQuarter.ToString("F2")}%");
             }
         }
