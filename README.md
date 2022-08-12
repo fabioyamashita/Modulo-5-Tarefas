@@ -18,10 +18,15 @@ O arquivo `selic.json` contém os dados históricos da taxa selic. Sendo um trim
 3º trimestre do ano -> de 01/07 até 30/09
 4º trimestre do ano -> de 01/10 até 31/12
 ```
-
 - Encontre o maior e o menor valor nominal da selic
 - Qual o valor mais comum da selic?
 - Qual valor médio?
+- Encontre os meses em que houve mudança no valor da selic
+- Calcule o valor médio de cada trimestre a partir de 2016
+- Qual o valor mais alto e mais baixo da selic para cada presidente da república
+- Durante a pandemia de covid, especificamente desde março/21, a selic está em constante subida. Calcule a taxa média de aumento nesse período. Dica: veja o método Zip
+
+OBS: Utilize apenas LINQ para resolver os itens
 
 ## Exercício com LINQ II (LINQ_II - 10/08/2022)
 
