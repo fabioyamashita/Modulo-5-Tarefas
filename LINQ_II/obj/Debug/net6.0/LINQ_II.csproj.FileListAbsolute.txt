@@ -1,0 +1,15 @@
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\bin\Debug\net6.0\LINQ_II.exe
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\bin\Debug\net6.0\LINQ_II.deps.json
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\bin\Debug\net6.0\LINQ_II.runtimeconfig.json
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\bin\Debug\net6.0\LINQ_II.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\bin\Debug\net6.0\LINQ_II.pdb
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.csproj.AssemblyReference.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.AssemblyInfoInputs.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.AssemblyInfo.cs
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.csproj.CoreCompileInputs.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\refint\LINQ_II.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.pdb
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\LINQ_II.genruntimeconfig.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\LINQ_II\obj\Debug\net6.0\ref\LINQ_II.dll
