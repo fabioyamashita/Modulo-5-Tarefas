@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "LINQ_I_Revised/1.0.0": {
+        "runtime": {
+          "LINQ_I_Revised.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "LINQ_I_Revised/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
