@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QueueExerciseOOP
 {
-    internal class PriorityCustomer : IRegularCustomer
+    internal class PriorityCustomer : IPriorityCustomer
     {
         public string Name { get; set; }
         public CustomerType CustomerType { get; set; }

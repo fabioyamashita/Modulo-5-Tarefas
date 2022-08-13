@@ -73,10 +73,10 @@ namespace LINQ_II
                 .Select(y => transposedMatrix[x, y] = squareMatrix[y, x]));
 
 
-            //var test2 = Enumerable.Range(0, transposedMatrix.GetLength(0))
-            //    .Select(x => Enumerable.Range(0, transposedMatrix.GetLength(1))
-            //    .Select(y => squareMatrix[y, x]).ToList())
-            //    .ToArray();
+            var test2 = Enumerable.Range(0, transposedMatrix.GetLength(0))
+                .Select(x => Enumerable.Range(0, transposedMatrix.GetLength(1))
+                .Select(y => squareMatrix[y, x]).ToArray())
+                .ToArray();
 
 
             //Console.WriteLine("\nMatriz transposta");

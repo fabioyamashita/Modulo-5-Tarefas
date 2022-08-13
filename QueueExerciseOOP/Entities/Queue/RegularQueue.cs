@@ -33,7 +33,7 @@ namespace QueueExerciseOOP
 
         public int CountPeopleInLine()
         {
-            return Customers.Count();
+            return Customers.Count;
         }
 
     }

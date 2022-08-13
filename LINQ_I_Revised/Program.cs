@@ -9,7 +9,7 @@ namespace LINQ_I_Revised
         {
             using var reader = new StreamReader("./selic.json");
             string json = reader.ReadToEnd();
-            var data = JsonSerializer.Deserialize<List<Selic>>(json);
+            var data = JsonSerializer.Deserialize<List<Selic>>(json).OrderBy(x => x.Date);
 
             var firstDateAvailable = data.Min(x => x.Date);
             var lastDateAvailable = data.Max(x => x.Date);
@@ -19,20 +19,19 @@ namespace LINQ_I_Revised
                   $"A {lastDateAvailable.ToString("dd/MM/yyyy")}");
             Console.WriteLine("\n##### Panorama Geral #####\n");
 
-            // -------------------------
+            // ------------------------------------------------
             // Maior e menor valor da Selic
-            var selicMin = data.Select(x => x.SelicValue).Min();
+            var selicMin = data.Min(x => x.SelicValue);
             Console.WriteLine($"Menor valor histórico: {selicMin.ToString("F2")}%");
 
-            var selicMax = data.Select(x => x.SelicValue).Max();
+            var selicMax = data.Max(x => x.SelicValue);
             Console.WriteLine($"Maior valor histórico: {selicMax.ToString("F2")}%");
 
-            // -------------------------
+            // ------------------------------------------------
             // Valor mais comum da Selic
             var selicCountMostFrequentValues = data
                     .GroupBy(x => x.SelicValue)
-                    .Select(x => x.Count())
-                    .Max(x => x);
+                    .Max(x => x.Count());
 
             // Array porque 2 taxas diferentes podem ter existido o mesmo número de dias
             var selicMostFrequentValues = data
@@ -49,66 +48,63 @@ namespace LINQ_I_Revised
             }
             Console.WriteLine($"{selicCountMostFrequentValues} dias");
 
-            // -------------------------
+            //var selicMostFrequentValues2 = data
+            //        .GroupBy(x => x.SelicValue)
+            //        .OrderByDescending(x => x.Count())
+            //        .Where(x => x.Count().Equals(data.GroupBy(x => x.SelicValue)
+            //        .Max(x => x.Count())))
+            //        .ToList();
+
+            // ------------------------------------------------
             // Valor médio
             var selicAverage = data.Average(x => x.SelicValue);
             Console.WriteLine($"Valor médio: {selicAverage.ToString("F2")}%");
 
-            // -------------------------
+            // ------------------------------------------------
             // Encontre os meses em que houve mudança no valor da selic
-            var numberOfMonthsBetweenDates = Math.Abs(12 * (firstDateAvailable.Year - lastDateAvailable.Year)
-                                                      + firstDateAvailable.Month - lastDateAvailable.Month);
-
-            var monthsSelicValueVariation = new List<DateTime>();
-
-            for (int i = 0; i <= numberOfMonthsBetweenDates; i++)
-            {
-                var currentDateFirstDayMonth = new DateTime(firstDateAvailable.Year, firstDateAvailable.Month, 1).AddMonths(i);
-                var currentMonth = currentDateFirstDayMonth.Month;
-                var currentYear = currentDateFirstDayMonth.Year;
-
-                var countSelicValueVariation = data
-                        .Where(x => x.Date.Month == currentMonth && x.Date.Year == currentYear)
-                        .GroupBy(x => x.SelicValue)
-                        .Count();
-
-                if (countSelicValueVariation > 1)
-                {
-                    monthsSelicValueVariation.Add(currentDateFirstDayMonth);
-                }
-            }
+            var changingMonths = data
+                .Where((item, index) => index == 0 || item.SelicValue != data.ElementAt(index - 1).SelicValue);
 
             Console.WriteLine("\nMeses em que houve mudança na Selic: ");
-            foreach (var item in monthsSelicValueVariation)
+            foreach (var item in changingMonths)
             {
-                Console.WriteLine($"- {item.ToString("MM/yyyy")} ");
+                Console.WriteLine(item.Date.ToString("MM/yyyy"));
             }
+
+            //var changingMonths2 = data
+            //    .Zip(data.Skip(1), (first, second) => new { Date = second.Date, Diff = second.SelicValue - first.SelicValue })
+            //    .Where(x => x.Diff > 0);
+
+            var changingMonths2 = data.Skip(1)
+                .Where(x => data.Zip(data, (first, second) => new { Diff = second.SelicValue - first.SelicValue } )
+                  .Any(x => x.Diff > 0));
+                  
+            Console.WriteLine("\nMeses em que houve mudança na Selic: ");
+            //foreach (var item in changingMonths2)
+            //{
+            //    Console.WriteLine(item.Date.ToString("MM/yyyy"));
+            //}
+
 
             // -------------------------
             // Valor médio de cada trimestre a partir de 2016
             Console.WriteLine("\n--------------------------------------------");
             Console.WriteLine("##### Dados por Trimestre #####");
-            var quarterFirstDay2016 = new DateTime(2016, 1, 1);
-            var quartersQuantity = Quarter.GetQuarters(quarterFirstDay2016, lastDateAvailable);
+            var quarterlyAvgList = data
+                .Where(x => x.Date.Year >= 2016)
+                .GroupBy(x => Math.Ceiling(x.Date.Month / 3m) + "/" + x.Date.Year)
+                .Select(x => new
+                {
+                    Quarterly = x.Key,
+                    Average = x.Average(x => x.SelicValue)
+                })
+                .OrderBy(x => DateTime.Parse(x.Quarterly))
+                .ToList();
 
-            for (int i = 0; i <= quartersQuantity; i++)
+            foreach(var quarterlyAvg in quarterlyAvgList)
             {
-                var currentQuarterDateFirstDayMonth = quarterFirstDay2016.AddMonths(3 * i);
-                var currentQuarter = Quarter.GetQuarterFromDate(currentQuarterDateFirstDayMonth);
-                var currentYear = currentQuarterDateFirstDayMonth.Year;
-
-                var currentQuarterStartDate = Quarter.GetQuarterStartDate(currentQuarterDateFirstDayMonth);
-                var currentQuarterEndDate = Quarter.GetQuarterEndDate(currentQuarterDateFirstDayMonth);
-
-                Console.WriteLine($"\n####   {currentQuarter}º trimestre - {currentYear}   ####");
-                Console.WriteLine($"#### {currentQuarterStartDate.ToString("dd/MM/yyyy")} " +
-                                  $"a {currentQuarterEndDate.ToString("dd/MM/yyyy")} ####");
-
-                var selicAverageQuarter = data
-                        .Where(x => x.Date >= currentQuarterStartDate && x.Date <= currentQuarterEndDate)
-                        .Average(x => x.SelicValue);
-
-                Console.WriteLine($"Valor médio: {selicAverageQuarter.ToString("F2")}%");
+                Console.WriteLine($"\n####   {quarterlyAvg.Quarterly[0]}º trimestre - {quarterlyAvg.Quarterly.Substring(2,4)}   ####");
+                Console.WriteLine($"Valor médio: {quarterlyAvg.Average.ToString("F2")}%");
             }
 
             // -------------------------
@@ -150,43 +146,16 @@ namespace LINQ_I_Revised
             // Taxa média de aumento nesse desde março/21
             Console.WriteLine("\n--------------------------------------------");
             Console.WriteLine("## TAXA MÉDIA DE AUMENTO DA SELIC DESDE MAR/21 ##");
+            var filteredData = data
+                .Where(x => x.Date > new DateTime(2021, 3, 1))
+                .DistinctBy(x => x.SelicValue)
+                .Select(x => x.SelicValue);
 
-            var startDateSinceMar21 = new DateTime(2021, 3, 1);
-
-            var numberOfMonthsBetweenDates21 = Math.Abs(12 * (startDateSinceMar21.Year - lastDateAvailable.Year)
-                                      + startDateSinceMar21.Month - lastDateAvailable.Month);
-
-            var firstDayMonthValues = new List<double>();
-            var lastDayMonthValues = new List<double>();
-
-            // Não considerando o mês não finalizado
-            for (int i = 0; i < numberOfMonthsBetweenDates21; i++)
-            {
-                var currentDate = startDateSinceMar21.AddMonths(i);
-                var currentYear = currentDate.Year;
-                var currentMonth = currentDate.Month;
-
-                var firstDayMonthSelicValue = data
-                        .Where(x => x.Date.Month == currentMonth && x.Date.Year == currentYear)
-                        .OrderBy(x => x.Date)
-                        .Select(x => x.SelicValue)
-                        .First();
-
-                var lastDayMonthSelicValue = data
-                        .Where(x => x.Date.Month == currentMonth && x.Date.Year == currentYear)
-                        .OrderByDescending(x => x.Date)
-                        .Select(x => x.SelicValue)
-                        .First();
-
-                firstDayMonthValues.Add(firstDayMonthSelicValue);
-                lastDayMonthValues.Add(lastDayMonthSelicValue);
-            }
-
-            var monthRates = firstDayMonthValues
-                .Zip(lastDayMonthValues, (first, second) => (second - first))
+            var AverageSelicSince21 = filteredData
+                .Zip(filteredData.Skip(1), (a, b) => b - a)
                 .Average();
-         
-            Console.WriteLine($"\nTaxa média mensal: +{monthRates.ToString("F2")}%");
+
+            Console.WriteLine($"\nTaxa média mensal: +{AverageSelicSince21.ToString("F2")}%");
         }
     }
 }
