@@ -63,7 +63,8 @@ namespace LINQ_I_Revised
             // ------------------------------------------------
             // Encontre os meses em que houve mudança no valor da selic
             var changingMonths = data
-                .Where((item, index) => index == 0 || item.SelicValue != data.ElementAt(index - 1).SelicValue);
+                .Where((item, index) => index == 0 || item.SelicValue != data.ElementAt(index - 1).SelicValue)
+                .Skip(1);
 
             Console.WriteLine("\nMeses em que houve mudança na Selic: ");
             foreach (var item in changingMonths)
@@ -71,20 +72,16 @@ namespace LINQ_I_Revised
                 Console.WriteLine(item.Date.ToString("MM/yyyy"));
             }
 
-            //var changingMonths2 = data
-            //    .Zip(data.Skip(1), (first, second) => new { Date = second.Date, Diff = second.SelicValue - first.SelicValue })
-            //    .Where(x => x.Diff > 0);
+            // Usando Zip
+            var changingMonths2 = data
+                .Zip(data.Skip(1), (first, second) => new { Date = second.Date, Diff = first.SelicValue - second.SelicValue })
+                .Where(x => x.Diff != 0);
 
-            var changingMonths2 = data.Skip(1)
-                .Where(x => data.Zip(data, (first, second) => new { Diff = second.SelicValue - first.SelicValue } )
-                  .Any(x => x.Diff > 0));
-                  
-            Console.WriteLine("\nMeses em que houve mudança na Selic: ");
+            //Console.WriteLine("\nMeses em que houve mudança na Selic: ");
             //foreach (var item in changingMonths2)
             //{
             //    Console.WriteLine(item.Date.ToString("MM/yyyy"));
             //}
-
 
             // -------------------------
             // Valor médio de cada trimestre a partir de 2016

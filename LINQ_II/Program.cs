@@ -10,6 +10,7 @@ namespace LINQ_II
     {
         static void Main(string[] args)
         {
+            // -------------------------------------
             // Retornando o caractere mais frequente
             Console.WriteLine("\n## Retornando o caractere mais frequente em uma string ##");
             string stringEx1 = "aaaadfghthgjjk";
@@ -22,6 +23,7 @@ namespace LINQ_II
             Console.WriteLine($"string: {stringEx1}");
             Console.WriteLine($"Caractere mais frequente: {mostFrequentChar}");
 
+            // -------------------------------------
             // Trocando um número por caractere especial no teclado
             Console.WriteLine("\n## Trocando um número por caractere especial no teclado ##");
             Dictionary<char, char> dict = new Dictionary<char, char>();
@@ -42,6 +44,12 @@ namespace LINQ_II
             Console.WriteLine($"string: {stringEx2}");
             Console.WriteLine("Convertido: " + string.Join("",convertToSpecialChar));
 
+            // Segunda Forma
+            var chars = "!@#$%¨&*()";
+            var input = "$$$####";
+            var result2 = String.Join("", input.Select(x => chars.IndexOf(x)));
+
+            // -------------------------------------
             // Embaralhando uma lista ordenada
             Console.WriteLine("\n## Embaralhando uma lista ordenada ##");
             var orderedList = new List<int>() { 1, 2, 3, 4, 5, 6 };
@@ -78,6 +86,7 @@ namespace LINQ_II
                 .Select(y => squareMatrix[y, x]).ToArray())
                 .ToArray();
 
+            //var test3 = (from int val in squareMatrix select val);
 
             //Console.WriteLine("\nMatriz transposta");
             //for (int i = 0; i < test.GetLength(0); i++)
