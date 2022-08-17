@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\ConsumingAPI\\ConsumingValorantAPI\\ConsumingValorantAPI.csproj",
-      "projectName": "ConsumingValorantAPI",
-      "projectPath": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\ConsumingAPI\\ConsumingValorantAPI\\ConsumingValorantAPI.csproj",
+      "projectUniqueName": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\Consuming_API\\ConsumingPokemonAPI\\ConsumingPokemonAPI.csproj",
+      "projectName": "ConsumingPokemonAPI",
+      "projectPath": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\Consuming_API\\ConsumingPokemonAPI\\ConsumingPokemonAPI.csproj",
       "packagesPath": "C:\\Users\\yamas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\ConsumingAPI\\ConsumingValorantAPI\\obj\\",
+      "outputPath": "C:\\Users\\yamas\\Documents\\C#\\Curso-Completo-Lets-Code-Safra\\Modulo-5-Tarefas\\Consuming_API\\ConsumingPokemonAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
