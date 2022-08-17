@@ -1,0 +1,15 @@
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\bin\Debug\net6.0\ConsumingPokemonAPI.exe
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\bin\Debug\net6.0\ConsumingPokemonAPI.deps.json
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\bin\Debug\net6.0\ConsumingPokemonAPI.runtimeconfig.json
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\bin\Debug\net6.0\ConsumingPokemonAPI.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\bin\Debug\net6.0\ConsumingPokemonAPI.pdb
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.csproj.AssemblyReference.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.AssemblyInfoInputs.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.AssemblyInfo.cs
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.csproj.CoreCompileInputs.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\refint\ConsumingPokemonAPI.dll
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.pdb
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ConsumingPokemonAPI.genruntimeconfig.cache
+C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\ConsumingAPI\ConsumingPokemonAPI\obj\Debug\net6.0\ref\ConsumingPokemonAPI.dll
