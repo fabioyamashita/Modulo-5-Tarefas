@@ -42,3 +42,7 @@ Aqui você ira fazer vários "pequenos exercícios". Por favor, resolva todos no
  3,3,3,3   → 1,2,3,4
  4,4,4,4]    1,2,3,4]
  ```
+
+## Exercício API (ConsumingAPI - 16/08/2022)
+
+Consumir qualquer API da sua preferência e trabalhar com os dados recuperados.
