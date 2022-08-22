@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumingValorantAPI", "ConsumingValorantAPI\ConsumingValorantAPI.csproj", "{38ACCF5F-5378-4829-8587-668E8C66DB4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsumingValorantAPI", "ConsumingValorantAPI\ConsumingValorantAPI.csproj", "{38ACCF5F-5378-4829-8587-668E8C66DB4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumingPokemonAPI", "ConsumingPokemonAPI\ConsumingPokemonAPI.csproj", "{87FBAE2D-F573-4852-B3A6-AE08A0B3E03F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsumingPokemonAPI", "ConsumingPokemonAPI\ConsumingPokemonAPI.csproj", "{87FBAE2D-F573-4852-B3A6-AE08A0B3E03F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumingPokemonAPI_V2", "ConsumingPokemonAPI_V2\ConsumingPokemonAPI_V2.csproj", "{29F7FE2F-4479-4D84-AA9B-6C6CD673ED94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{87FBAE2D-F573-4852-B3A6-AE08A0B3E03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87FBAE2D-F573-4852-B3A6-AE08A0B3E03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87FBAE2D-F573-4852-B3A6-AE08A0B3E03F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F7FE2F-4479-4D84-AA9B-6C6CD673ED94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F7FE2F-4479-4D84-AA9B-6C6CD673ED94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F7FE2F-4479-4D84-AA9B-6C6CD673ED94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F7FE2F-4479-4D84-AA9B-6C6CD673ED94}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
