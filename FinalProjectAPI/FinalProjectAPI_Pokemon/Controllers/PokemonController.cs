@@ -3,6 +3,8 @@ using System.Text.Json;
 using System;
 using FinalProjectAPI_Pokemon.Models;
 using FinalProjectAPI_Pokemon.Dtos;
+using FinalProjectAPI_Pokemon.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinalProjectAPI_Pokemon.Controllers
 {
@@ -10,11 +12,13 @@ namespace FinalProjectAPI_Pokemon.Controllers
     [ApiController]
     public class PokemonController : ControllerBase
     {
-        private readonly ILogger<PokemonController> _logger;
+        //private ICollection<Pokemon> pokemons1 = new List<Pokemon>();
+        private readonly PokemonContext _context;
 
-        public PokemonController(ILogger<PokemonController> logger)
+        public PokemonController(PokemonContext context)
         {
-            _logger = logger;
+            _context = context;
+            //pokemons1 = _context.Pokemon.ToList();
         }
 
         // GET: api/<PokemonsController>
@@ -22,11 +26,7 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [HttpGet]
         public async Task<ActionResult<Pokemon>> Get()
         {
-            using var reader = new StreamReader("./dataComplete.json");
-            var json = await reader.ReadToEndAsync();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
-
-            return Ok(pokemons);
+            return Ok(await _context.Pokemon.ToListAsync());
         }
 
         // GET api/<PokemonsController>/5
@@ -34,9 +34,7 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Pokemon>> Get(int id)
         {
-            using var reader = new StreamReader("./dataComplete.json");
-            var json = await reader.ReadToEndAsync();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
+            var pokemons = await _context.Pokemon.ToListAsync();
 
             var pokemon = pokemons.Where(p => p.Id == id).FirstOrDefault();
 
@@ -57,10 +55,7 @@ namespace FinalProjectAPI_Pokemon.Controllers
         {
             string urlPokemonApi = $"https://pokeapi.co/api/v2/pokemon/";
 
-            using var reader = new StreamReader("./dataComplete.json");
-            var json = await reader.ReadToEndAsync();
-            reader.Dispose();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
+            var pokemons = await _context.Pokemon.ToListAsync();
 
             if (pokemons.Select(p => p.Id).Contains(request.Id))
             {
@@ -74,10 +69,8 @@ namespace FinalProjectAPI_Pokemon.Controllers
                 Url = $"{urlPokemonApi}{request.Id}/"
             };
 
-            pokemons.Add(pokemon);
-
-            var content = JsonSerializer.Serialize(pokemons);
-            System.IO.File.WriteAllText("./dataComplete.json", content);
+            _context.Pokemon.Add(pokemon);
+            await _context.SaveChangesAsync();
 
             return Created($"{urlPokemonApi}{request.Id}/", pokemon);
         }
@@ -87,22 +80,18 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [HttpPut]
         public async Task<ActionResult<Pokemon>> UpdatePokemon([FromBody] CreatePokemon request)
         {
-            using var reader = new StreamReader("./dataComplete.json");
-            var json = await reader.ReadToEndAsync();
-            reader.Dispose();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
+            var pokemons = await _context.Pokemon.ToListAsync();
 
-            var pokemon = pokemons.Find(p => p.Id == request.Id);
-            if (pokemon == null)
+            var dbPokemon = await _context.Pokemon.FindAsync(request.Id);
+            if (dbPokemon == null)
             {
                 return BadRequest($"Pokémon #{request.Id} não encontrado!");
             }
 
-            pokemon.Id = request.Id;
-            pokemon.Name = request.Name;
+            dbPokemon.Id = request.Id;
+            dbPokemon.Name = request.Name;
 
-            var content = JsonSerializer.Serialize(pokemons);
-            System.IO.File.WriteAllText("./dataComplete.json", content);
+            await _context.SaveChangesAsync();
 
             return Ok($"Pokémon #{request.Id} - atualizado com sucesso!");
         }
@@ -111,20 +100,16 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Pokemon>> Delete(int id)
         {
-            using var reader = new StreamReader("./dataComplete.json");
-            var json = await reader.ReadToEndAsync();
-            reader.Dispose();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
-            
-            if (!pokemons.Select(p => p.Id).Contains(id))
+            var dbPokemon = await _context.Pokemon.FindAsync(id);
+
+            if (dbPokemon == null)
             {
                 return BadRequest($"Id #{id} não existe!");
             }
 
-            pokemons.Remove(pokemons.SingleOrDefault(p => p.Id == id));
+            _context.Pokemon.Remove(dbPokemon);
 
-            var content = JsonSerializer.Serialize(pokemons);
-            System.IO.File.WriteAllText("./dataComplete.json", content);
+            await _context.SaveChangesAsync();
 
             return Ok($"Pokémon #{id} - deletado sucesso!");
         }

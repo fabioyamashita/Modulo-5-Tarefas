@@ -12,5 +12,6 @@ namespace FinalProjectAPI_Pokemon.Models
 
         [JsonPropertyName("url")]
         public string Url { get; set; }
+
     }
 }

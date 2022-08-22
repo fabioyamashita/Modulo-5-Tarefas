@@ -1,3 +1,6 @@
+using FinalProjectAPI_Pokemon.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace FinalProjectAPI_Pokemon
 {
     public class Program
@@ -7,6 +10,14 @@ namespace FinalProjectAPI_Pokemon
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            
+            // Add SQL Server service
+            builder.Services.AddDbContext<PokemonContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("PokemonContext")
+                ?? throw new InvalidOperationException("Connection string 'PokemonContext' not found.")));
+
+            // Creating seed
+            
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -29,7 +40,11 @@ namespace FinalProjectAPI_Pokemon
 
             app.MapControllers();
 
+            // Seeding inital data from dataComplete.json
+            AppDbInitializer.Seed(app);
+
             app.Run();
         }
+
     }
 }

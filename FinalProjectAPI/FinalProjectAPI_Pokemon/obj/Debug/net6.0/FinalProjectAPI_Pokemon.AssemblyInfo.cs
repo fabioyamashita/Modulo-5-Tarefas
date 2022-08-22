@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("9fcdff3f-a7d8-48ec-afbd-35e82fd363a8")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinalProjectAPI_Pokemon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
