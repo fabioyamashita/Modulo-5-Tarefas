@@ -83,10 +83,28 @@ namespace FinalProjectAPI_Pokemon.Controllers
         }
 
         // PUT api/<PokemonsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        //[HttpPut("{id}")]
+        [HttpPut]
+        public async Task<ActionResult<Pokemon>> UpdatePokemon([FromBody] CreatePokemon request)
         {
+            using var reader = new StreamReader("./dataComplete.json");
+            var json = await reader.ReadToEndAsync();
+            reader.Dispose();
+            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
 
+            var pokemon = pokemons.Find(p => p.Id == request.Id);
+            if (pokemon == null)
+            {
+                return BadRequest($"Pokémon #{request.Id} não encontrado!");
+            }
+
+            pokemon.Id = request.Id;
+            pokemon.Name = request.Name;
+
+            var content = JsonSerializer.Serialize(pokemons);
+            System.IO.File.WriteAllText("./dataComplete.json", content);
+
+            return Ok($"Pokémon #{request.Id} - atualizado com sucesso!");
         }
 
         // DELETE api/<PokemonsController>/5
