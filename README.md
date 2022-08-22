@@ -54,3 +54,14 @@ Alguns exemplos de API:
  - [Spotify](https://developer.spotify.com/documentation/web-api/quick-start/). Dica: mesmo esquema do strava, você deve registrar seu app e gerar um token
  - [publicapis](https://api.publicapis.org/entries) é uma api que lista apis publicas
 
+## Projeto Final (FinalProjectAPI - 24/08/2022)
+
+Para o projeto final você deve criar uma API utilizando o template de projeto 'ASP.NET Core Web API', conforme visto em sala.
+
+Você deve criar 4 endpoints para efetuar as operações de CRUD e ao menos 1 endpoint para voltar alguma forma de análise, como por exemplo algum dado estatístico. Mas sinta-se livre para criar quantos você quiser =)
+
+Você é livre para escolher sua base de dados (e.g.: pokemons, bandas, suas partidas lendárias de xadrez...). Além disso, você deve escolher uma forma de persistência de dados, fique a vontade para escolher salvar em um arquivo ou um banco de dados.
+
+IMPORTANTE: você deve "carregar" toda base de dados e trabalhar as "consultas" usando LINQ. O objetivo não é treinar banco de dados, mas sim os conceitos vistos durante o módulo.
+
+EXTRA: crie um projeto para consumir os dados da API que você acabou de construir. Kudos extras se você conseguir encaixar todos os conceitos vistos em sala, como: filas, pilhas, lambdas...
