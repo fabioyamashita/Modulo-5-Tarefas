@@ -35,29 +35,43 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [Route("list")]
         public async Task<ActionResult<IEnumerable<Pokemon>>> GetAllPagination([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var pokemons = await _context.Pokemon.ToListAsync();
+            try
+            {
+                var pokemons = await _context.Pokemon.ToListAsync();
+                var totalPages = Math.Ceiling((decimal)pokemons.Count / pageSize);
 
-            if (page < 1 || pageSize < 1)
+                if (page < 1 || pageSize < 1)
+                {
+                    return BadRequest("Dados inválidos.");
+                }
+
+                if (page * pageSize > totalPages * pageSize)
+                {
+                    return NotFound("Página não contém elementos!");
+                }
+
+                var pokemonsPerPage = pokemons
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = $"Mostrando página {page}",
+                    Meta = new
+                    {
+                        CurrentPage = page,
+                        PageSize = pageSize,
+                        TotalPages = totalPages
+                    },
+                    Data = pokemonsPerPage
+                });
+            }
+            catch
             {
                 return BadRequest("Dados inválidos.");
             }
-
-            var pokemonsPerPage = pokemons
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            return Ok(new
-            {
-                StatusCode = 200,
-                Message = $"Mostrando página {page}",
-                Meta = new
-                {
-                    CurrentPage = page,
-                    PageSize = pageSize
-                },
-                Data = pokemonsPerPage
-            });
         }
         #endregion
 
@@ -94,7 +108,7 @@ namespace FinalProjectAPI_Pokemon.Controllers
                 return BadRequest("Especifique uma palavra ou letra válida!");
             }
 
-            var filteredData = pokemons.Where(x => x.Name.StartsWith(term)).ToList();
+            var filteredData = pokemons.Where(x => x.Name.ToUpper().StartsWith(term.ToUpper())).ToList();
 
             if (filteredData.Count == 0)
             {

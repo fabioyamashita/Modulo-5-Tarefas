@@ -14,10 +14,6 @@ namespace FinalProjectAPI_Pokemon.Data
 
                 if (!context.Pokemon.Any())
                 {
-                    //using var reader = new StreamReader("./dataComplete.json");
-                    //var json = reader.ReadToEnd();
-                    //var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
-
                     var pokemons = await PokemonService.GetPokemonFromOfficialAPI(1, 151);
                     var count = 1;
 

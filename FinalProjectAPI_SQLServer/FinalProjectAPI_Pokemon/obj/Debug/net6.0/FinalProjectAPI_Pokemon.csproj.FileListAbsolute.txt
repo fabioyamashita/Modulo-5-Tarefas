@@ -63,8 +63,6 @@ C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\Fina
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI\FinalProjectAPI_Pokemon\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\appsettings.json
-C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\data.json
-C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\dataComplete.json
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\FinalProjectAPI_Pokemon.exe
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\FinalProjectAPI_Pokemon.deps.json
 C:\Users\yamas\Documents\C#\Curso-Completo-Lets-Code-Safra\Modulo-5-Tarefas\FinalProjectAPI_SQLServer\FinalProjectAPI_Pokemon\bin\Debug\net6.0\FinalProjectAPI_Pokemon.runtimeconfig.json
