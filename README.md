@@ -70,7 +70,7 @@ EXTRA: crie um projeto para consumir os dados da API que você acabou de constru
 
 Desenvolvi um aplicativo Console para consumir uma API que criei usando as informações da API do Pokémon (https://pokeapi.co/docs/v2#pokemon). 
 
-Primeiro, criei um projeto Web API e criei alguns EndPoints para retornar/modificar algumas informações:
+Primeiro, desenvolvi um projeto Web API e criei alguns EndPoints para retornar/modificar algumas informações:
 1. Retornar todos os pokémons da lista
 2. Retornar todos os pokémons da lista, de acordo com uma paginação que o usuário define
 3. Procurar um Pokémon pelo ID
