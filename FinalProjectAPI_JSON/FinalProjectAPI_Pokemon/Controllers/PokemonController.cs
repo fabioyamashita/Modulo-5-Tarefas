@@ -32,31 +32,46 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [Route("list")]
         public async Task<ActionResult<IEnumerable<Pokemon>>> GetAllPagination([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            using var reader = new StreamReader("./data.json");
-            var json = await reader.ReadToEndAsync();
-            var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
+            try
+            {
+                using var reader = new StreamReader("./data.json");
+                var json = await reader.ReadToEndAsync();
+                var pokemons = JsonSerializer.Deserialize<List<Pokemon>>(json);
 
-            if (page < 1 || pageSize < 1)
+                var totalPages = Math.Ceiling((decimal)pokemons.Count / pageSize);
+
+                if (page < 1 || pageSize < 1)
+                {
+                    return BadRequest("Dados inválidos.");
+                }
+
+                if (page * pageSize > totalPages * pageSize)
+                {
+                    return NotFound("Página não contém elementos!");
+                }
+
+                var pokemonsPerPage = pokemons
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                return Ok(new
+                {
+                    StatusCode = 200,
+                    Message = $"Mostrando página {page}",
+                    Meta = new
+                    {
+                        CurrentPage = page,
+                        PageSize = pageSize,
+                        TotalPages = totalPages
+                    },
+                    Data = pokemonsPerPage
+                });
+            }
+            catch
             {
                 return BadRequest("Dados inválidos.");
             }
-
-            var pokemonsPerPage = pokemons
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            return Ok(new
-            {
-                StatusCode = 200,
-                Message = $"Mostrando página {page}",
-                Meta = new
-                {
-                    CurrentPage = page,
-                    PageSize = pageSize
-                },
-                Data = pokemonsPerPage
-            });
         }
         #endregion
 
@@ -98,7 +113,7 @@ namespace FinalProjectAPI_Pokemon.Controllers
                 return BadRequest("Especifique uma palavra ou letra válida!");
             }
 
-            var filteredData = pokemons.Where(x => x.Name.StartsWith(term)).ToList();
+            var filteredData = pokemons.Where(x => x.Name.ToUpper().StartsWith(term.ToUpper())).ToList();
 
             if (filteredData.Count == 0)
             {
@@ -132,8 +147,6 @@ namespace FinalProjectAPI_Pokemon.Controllers
         [HttpPost]
         public async Task<ActionResult<Pokemon>> CreatePokemon([FromBody] CreatePokemon request)
         {
-            string urlPokemonApi = $"https://pokeapi.co/api/v2/pokemon/";
-
             using var reader = new StreamReader("./data.json");
             var json = await reader.ReadToEndAsync();
             reader.Dispose();
