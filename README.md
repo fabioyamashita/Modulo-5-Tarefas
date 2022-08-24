@@ -82,7 +82,7 @@ Primeiro, criei um projeto Web API e criei alguns EndPoints para retornar/modifi
 
 O banco de dados foi feito de 2 formas:
 - **FinalProjectAPI_JSON:** Através de um arquivo JSON inicial, que contém os 151 pokémons iniciais (com Id, Nome e URL de acesso na API oficial)
-- **FinalProjectAPI_SQLServer:** Através de um banco de dados vazio, que na primeira execução do programa é preenchido fazendo uma request para a API oficial, trazendo os 151 pokémons iniciais. Nesta parte foi usado o Entity Framework Core para fazer a ligação com o banco de dados.
+- **FinalProjectAPI_SQLServer:** Através de um banco de dados vazio, que na primeira execução do programa é preenchido fazendo uma request para a API oficial, trazendo os 151 pokémons iniciais. Nesta parte foi usado o Entity Framework Core para fazer a ligação com o SQL Server.
 
 Obs.: no **item '6. Inserir um novo Pokémon'**, o pokémon é inserido apenas pelo número do ID. Assim, é feito um request para a API oficial e as outras informações são inseridas de acordo com a resposta que chega para o programa.
 
