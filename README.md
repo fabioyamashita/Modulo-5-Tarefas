@@ -88,4 +88,3 @@ Obs.: no **item '6. Inserir um novo Pokémon'**, o pokémon é inserido apenas p
 
 ### Vídeo Demonstrativo
 https://user-images.githubusercontent.com/98363297/186494796-16108993-19c3-4e47-a4ae-e9f31e3b9127.mp4
-
