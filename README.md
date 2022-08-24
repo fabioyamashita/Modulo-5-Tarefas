@@ -65,3 +65,28 @@ Você é livre para escolher sua base de dados (e.g.: pokemons, bandas, suas par
 IMPORTANTE: você deve "carregar" toda base de dados e trabalhar as "consultas" usando LINQ. O objetivo não é treinar banco de dados, mas sim os conceitos vistos durante o módulo.
 
 EXTRA: crie um projeto para consumir os dados da API que você acabou de construir. Kudos extras se você conseguir encaixar todos os conceitos vistos em sala, como: filas, pilhas, lambdas...
+
+### Minha Solução
+
+Desenvolvi um aplicativo Console para consumir uma API que criei usando as informações da API do Pokémon (https://pokeapi.co/). 
+
+Primeiro, desenvolvi um projeto Web API e criei alguns EndPoints para retornar/modificar algumas informações:
+1. Retornar todos os pokémons da lista
+2. Retornar todos os pokémons da lista, de acordo com uma paginação que o usuário define
+3. Procurar um Pokémon pelo ID
+4. Procurar Pokémons através de uma busca (por letra ou palavra)
+5. Retornar todos os pokémons da lista ordenados pelo nome
+6. Inserir um novo Pokémon
+7. Atualizar um Pokémon existente
+8. Deletar um Pokémon
+
+O banco de dados foi feito de 2 formas:
+- **FinalProjectAPI_JSON:** Através de um arquivo JSON inicial, que contém os 151 pokémons iniciais (com Id, Nome e URL de acesso na API oficial)
+- **FinalProjectAPI_SQLServer:** Através de um banco de dados vazio, que na primeira execução do programa é preenchido fazendo uma request para a API oficial, trazendo os 151 pokémons iniciais. Nesta parte foi usado o Entity Framework Core para fazer a ligação com o SQL Server.
+
+Obs.: no **item '6. Inserir um novo Pokémon'**, o pokémon é inserido apenas pelo número do ID. Assim, é feito um request para a API oficial e as outras informações são inseridas de acordo com a resposta que chega para o programa.
+
+Obs.2: Faltam algumas implementações como princípios SOLID, validação de input do usuário e etc.
+
+### Vídeo Demonstrativo
+https://user-images.githubusercontent.com/98363297/186494796-16108993-19c3-4e47-a4ae-e9f31e3b9127.mp4
