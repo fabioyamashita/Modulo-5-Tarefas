@@ -86,5 +86,7 @@ O banco de dados foi feito de 2 formas:
 
 Obs.: no **item '6. Inserir um novo Pokémon'**, o pokémon é inserido apenas pelo número do ID. Assim, é feito um request para a API oficial e as outras informações são inseridas de acordo com a resposta que chega para o programa.
 
+Obs.: Faltam algumas implementações como princípios SOLID, validação de input do usuário e etc.
+
 ### Vídeo Demonstrativo
 https://user-images.githubusercontent.com/98363297/186494796-16108993-19c3-4e47-a4ae-e9f31e3b9127.mp4
